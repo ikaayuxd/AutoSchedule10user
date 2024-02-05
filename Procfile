@@ -1,1 +1,1 @@
-worker: python3 -m autopicx
+worker: python3 -m xaayux
