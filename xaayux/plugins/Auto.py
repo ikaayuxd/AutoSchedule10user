@@ -20,18 +20,14 @@ async def forward_messages():
                     await client.send_message(dialog.entity.id, message)
         await asyncio.sleep(60)  # Send a message every 1 minute
 
-with TelegramClient('session_name', api_id, api_hash) as client:
-    @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
-    async def handle_cancel(event):
-        await event.respond('Cancelling Auto Message Forwarding...')
-        global forward_task
-        forward_task.cancel()
+@client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
+async def handle_cancel(event):
+    await event.respond('Cancelling Auto Message Forwarding...')
+    global forward_task
+    forward_task.cancel()
 
-    @client.on(events.NewMessage(outgoing=True, pattern='!start'))
+@client.on(events.NewMessage(outgoing=True, pattern='!start'))
     async def handle_start(event):
         await event.respond("Starting Auto Message Forwarding...")
         global forward_task
         forward_task = asyncio.create_task(forward_messages())
-
-    client.start()
-    client.run_until_disconnected()
