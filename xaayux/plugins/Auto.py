@@ -4,29 +4,34 @@ import logging
 import asyncio
 import random
 
-channel_ids = [-1001966404031]  # Replace with your channel IDs
+folder_name = "Pro Hacking"  # Replace with the name of your folder
 
-messages = [
-    "hii1",
-    "hii2",
-    "hii3"
-]  # Add your desired messages here
+message_links = [
+    "https://t.me/GrowWithPromo/113", 
+    "https://t.me/GrowWithPromo/127"
+]  # Add your desired message links here
 
-async def send_messages():
+async def forward_messages():
     while True:
-        for channel_id in channel_ids:
-            message = random.choice(messages)
-            await client.send_message(channel_id, message)
+        for message_link in message_links:
+            message = await client.get_messages(message_link)
+            for dialog in await client.get_dialogs():
+                if isinstance(dialog.entity, Channel) and dialog.entity.megagroup and dialog.entity.folder_id == folder_name:
+                    await client.send_message(dialog.entity.id, message)
         await asyncio.sleep(60)  # Send a message every 1 minute
 
-@client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
-async def handle_cancel(event):
-    await event.respond('Cancelling Auto Message Forwarding...')
-    global send_task
-    send_task.cancel()
+with TelegramClient('session_name', api_id, api_hash) as client:
+    @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
+    async def handle_cancel(event):
+        await event.respond('Cancelling Auto Message Forwarding...')
+        global forward_task
+        forward_task.cancel()
 
-@client.on(events.NewMessage(outgoing=True, pattern='!start'))
-async def handle_start(event):
-    await event.respond("Starting Auto Message Forwarding...")
-    global send_task
-    send_task = asyncio.create_task(send_messages())
+    @client.on(events.NewMessage(outgoing=True, pattern='!start'))
+    async def handle_start(event):
+        await event.respond("Starting Auto Message Forwarding...")
+        global forward_task
+        forward_task = asyncio.create_task(forward_messages())
+
+    client.start()
+    client.run_until_disconnected()
