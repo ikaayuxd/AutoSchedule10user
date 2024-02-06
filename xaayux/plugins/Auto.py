@@ -16,7 +16,7 @@ async def send_messages():
         for channel_id in channel_ids:
             message = random.choice(messages)
             await client.send_message(channel_id, message)
-            await asyncio.sleep(1800)  # Send a message every 1 minute
+        await asyncio.sleep(1800)  # Send a message every 30 minutes
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
@@ -29,3 +29,6 @@ async def handle_start(event):
     await event.respond("Starting Auto Message Forwarding...")
     global send_task
     send_task = asyncio.create_task(send_messages())
+
+with client:
+    client.run_until_disconnected()
