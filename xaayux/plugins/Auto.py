@@ -4,13 +4,6 @@ import logging
 import asyncio
 import random
 
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger('Felling Something Happening')
-
-class temp(object):
-    CANCEL = False
-
 channel_ids = [-1001966404031]  # Replace with your channel IDs
 
 messages = [
@@ -19,37 +12,21 @@ messages = [
     "hii3"
 ]  # Add your desired messages here
 
-async def forward_messages(client):
-    conversations = []
-    for channel_id in channel_ids:
-        conversation = client.conversation(channel_id)
-        conversations.append(conversation)
-
+async def send_messages():
     while True:
-        if temp.CANCEL:
-            break
-        try:
-            for conv in conversations:
-                response = await conv.get_response()
-                message = random.choice(messages)
-                await client.send_message(conv.chat_id, message)
-        except Exception as e:
-            logger.exception(e)
-            continue
-        await asyncio.sleep(TIME)
+        for channel_id in channel_ids:
+            message = random.choice(messages)
+            await client.send_message(channel_id, message)
+        await asyncio.sleep(60)  # Send a message every 1 minute
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
-    temp.CANCEL = True
-    msg = await event.respond('Cancelling Auto Message Forwarding...')
-    await asyncio.sleep(5)
-    await msg.delete()
+    await event.respond('Cancelling Auto Message Forwarding...')
+    global send_task
+    send_task.cancel()
 
 @client.on(events.NewMessage(outgoing=True, pattern='!start'))
 async def handle_start(event):
-    temp.CANCEL = False
-    if not temp.CANCEL:
-        msg = await event.respond("Starting Auto Message Forwarding...")
-        await forward_messages(client)
-        await asyncio.sleep(5)
-        await msg.delete()
+    await event.respond("Starting Auto Message Forwarding...")
+    global send_task
+    send_task = asyncio.create_task(send_messages())
