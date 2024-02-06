@@ -15,10 +15,10 @@ async def forward_messages():
     while True:
         for message in messages:
             message = random.choice(messages)
-            for dialog in await client.get_dialogs():
-                if isinstance(dialog.entity, Channel) and dialog.entity.megagroup and dialog.entity.folder_id == folder_name:
-                    await client.send_message(dialog.entity.id, message)
-        await asyncio.sleep(5)  # Send a message every 1 minute
+            async for dialog in client.iter_dialogs():
+                if dialog.is_channel and dialog.folder_id == folder_name:
+                    await client.send_message(dialog.id, message)
+        await asyncio.sleep(5)  # Send a message every 5 seconds
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
