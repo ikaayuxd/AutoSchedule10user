@@ -20,7 +20,6 @@ messages = [
 ]  # Add your desired messages here
 
 async def forward_messages(client):
-async def forward_messages(client):
     conversations = []
     for channel_id in channel_ids:
         conversation = client.conversation(channel_id)
