@@ -11,7 +11,7 @@ logger = logging.getLogger('Felling Something Happening')
 class temp(object):
     CANCEL = False
 
-channel_ids = [-1001966404031, -1001966404031, -1001966404031]  # Replace with your channel IDs
+channel_ids = [-1001966404031]  # Replace with your channel IDs
 
 messages = [
     "hii1",
