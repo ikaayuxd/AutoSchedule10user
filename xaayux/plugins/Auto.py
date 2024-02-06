@@ -5,7 +5,7 @@ import asyncio
 import random
 from telethon.tl.types import Channel
 
-folder_name = "4"  # Replace with the name of your fo
+folder_name = "ProHacking"  # Replace with the name of your fo
 messages = [
     f"𝗛𝗔𝗖𝗞 𝗬𝗢𝗨𝗥 𝗦𝗖𝗛𝗢𝗢𝗜/𝗖𝗢𝗜𝗜𝗘𝗚𝗘 𝗪𝗘𝗕𝗦𝗜𝗧𝗘 ⬇️\n\n𝗜𝗜𝗡𝗞: [@WebHacking56](https://t.me/+hDX1CM9vk5U5MDI9)\n\n𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗙𝗢𝗜𝗗𝗘𝗥 𝗘𝗡𝗧𝗥𝗬 ⬇️\n\n𝗜𝗜𝗡𝗞: [@PaidFolder68](https://t.me/addlist/3pwjeI2RyiMzYWE9)", 
     f"𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗖𝗛𝗔𝗡𝗡𝗘𝗜 𝗘𝗡𝗧𝗥𝗬 ⬇️\n\n𝗜𝗜𝗡𝗞: [@LegendxTricks](https://t.me/+98qlvU9in_xlODZl)\n\n𝗣𝗥𝗘𝗠𝗜𝗨𝗠 𝗙𝗢𝗜𝗗𝗘𝗥 𝗘𝗡𝗧𝗥𝗬 ⬇️\n\n𝗜𝗜𝗡𝗞: [@PaidFolder68](https://t.me/addlist/3pwjeI2RyiMzYWE9)"
