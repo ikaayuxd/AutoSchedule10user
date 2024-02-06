@@ -16,7 +16,7 @@ async def send_messages():
         for channel_id in channel_ids:
             message = random.choice(messages)
             await client.send_message(channel_id, message)
-            await asyncio.sleep(10)  # Send a message every 1 minute
+            await asyncio.sleep(1800)  # Send a message every 1 minute
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
