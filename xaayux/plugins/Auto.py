@@ -20,19 +20,24 @@ messages = [
 ]  # Add your desired messages here
 
 async def forward_messages(client):
-    async with client.conversation(channel_ids) as conv:
-        while True:
-            if temp.CANCEL:
-                break
-            try:
+async def forward_messages(client):
+    conversations = []
+    for channel_id in channel_ids:
+        conversation = client.conversation(channel_id)
+        conversations.append(conversation)
+
+    while True:
+        if temp.CANCEL:
+            break
+        try:
+            for conv in conversations:
                 response = await conv.get_response()
-                for channel_id in channel_ids:
-                    message = random.choice(messages)
-                    await client.send_message(channel_id, message)
-            except Exception as e:
-                logger.exception(e)
-                continue
-            await asyncio.sleep(TIME)
+                message = random.choice(messages)
+                await client.send_message(conv.chat_id, message)
+        except Exception as e:
+            logger.exception(e)
+            continue
+        await asyncio.sleep(TIME)
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
