@@ -3,7 +3,7 @@ from os import environ
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
-from xaayux/config import API_ID, API_HASH, SESSION, CHANNEL_ID, TIME
+from xaayux.config import API_ID, API_HASH, SESSION, CHANNEL_ID, TIME
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
