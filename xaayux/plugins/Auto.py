@@ -6,7 +6,7 @@ import random
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(name)
+logger = logging.getLogger('Felling Something Happening')
 
 class temp(object):
     CANCEL = False
