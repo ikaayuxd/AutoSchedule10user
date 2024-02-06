@@ -27,7 +27,7 @@ async def handle_cancel(event):
     forward_task.cancel()
 
 @client.on(events.NewMessage(outgoing=True, pattern='!start'))
-    async def handle_start(event):
-        await event.respond("Starting Auto Message Forwarding...")
-        global forward_task
-        forward_task = asyncio.create_task(forward_messages())
+async def handle_start(event):
+    await event.respond("Starting Auto Message Forwarding...")
+    global forward_task
+    forward_task = asyncio.create_task(forward_messages())
