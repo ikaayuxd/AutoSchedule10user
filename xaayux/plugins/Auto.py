@@ -3,6 +3,7 @@ from telethon import events, types
 import logging 
 import asyncio
 import random
+from telethon.tl.types import Channel
 
 folder_name = "4"  # Replace with the name of your fo
 messages = [
