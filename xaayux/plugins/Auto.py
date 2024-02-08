@@ -3,14 +3,14 @@ from telethon import events, types
 import logging 
 import asyncio
 import random
-from xaayux.config import channel_ids, messages
+from xaayux.config import channel_ids, messages, DELAY
 
 async def send_messages():
     while True:
         for channel_id in channel_ids:
             message = random.choice(messages)
             await client.send_message(channel_id, message)
-        await asyncio.sleep(1800)  # Send a message every 30 minutes
+        await asyncio.sleep(DELAY)  # Send a message every 30 minutes
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
