@@ -28,14 +28,14 @@ ABOUT_TXT = """
 """
 
 @client.on(events.NewMessage(pattern=r'^@'))
-    async def join_group(event):
-        group_username = event.raw_text
-        try:
-            group_entity = await client.get_entity(group_username)
-            await client(InviteToChannelRequest(channel=group_entity, users=[client.get_me()]))
-            await event.respond(f'Successfully joined {group_username}!')
-        except Exception as e:
-            await event.respond(f'Failed to join {group_username}: {str(e)}')
+async def join_group(event):
+    group_username = event.raw_text
+    try:
+        group_entity = await client.get_entity(group_username)
+        await client(InviteToChannelRequest(channel=group_entity, users=[client.get_me()]))
+        await event.respond(f'Successfully joined {group_username}!')
+     except Exception as e:
+        await event.respond(f'Failed to join {group_username}: {str(e)}')
           
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
