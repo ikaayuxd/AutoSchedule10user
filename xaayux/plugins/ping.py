@@ -32,7 +32,7 @@ async def join_group(event):
     group_username = event.raw_text
     try:
         group_entity = await client.get_entity(group_username)
-        await client(InviteToChannelRequest(channel=group_entity, users=[client.get_me()]))
+        await client(JoinChannelRequest(group_entity))
         await event.respond(f'Successfully joined {group_username}!')
     except Exception as e:
         await event.respond(f'Failed to join {group_username}: {str(e)}')
