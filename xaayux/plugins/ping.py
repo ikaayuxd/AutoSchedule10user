@@ -9,7 +9,8 @@ logging.basicConfig(level=logging.DEBUG,
 logger = logging.getLogger(__name__)
 
 # -- Constants -- #
-HELP = """𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀
+HELP = """
+𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗖𝗼𝗺𝗺𝗮𝗻𝗱𝘀
 `!start` - **Start Auto Scheduler **
 `!cancel` - **Stop Auto Scheduler** 
 `!alive` - **Check If Bot Is Alive**
@@ -40,7 +41,4 @@ async def alive(event):
     await event.edit("▣▢▢▢▢▢")
     await event.edit("▣▣▢▢▢▢")
     await event.edit("▣▣▣▢▢▢")
-    await event.edit("▣▣▣▣▢▢")
-    await event.edit("▣▣▣▣▣▢")
-    await event.edit("▣▣▣▣▣▣")
     await event.edit("𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲 𝗔𝗻𝗱 𝗦𝘁𝗮𝗿𝘁𝗲𝗱 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗔𝗻𝗱 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱)")
