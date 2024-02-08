@@ -6,6 +6,8 @@ import asyncio
 import time
 from xaayux.config import DELAY
 
+D = DELAY
+
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -54,4 +56,4 @@ async def alive(event):
     await event.edit("▣▢▢")
     await event.edit("▣▣▢")
     await event.edit("▣▣▣")
-    await event.edit("𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲 𝗔𝗻𝗱 𝗦𝘁𝗮𝗿𝘁𝗲𝗱 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗔𝗻𝗱 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀)")
+    await event.edit("𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲 𝗔𝗻𝗱 𝗦𝘁𝗮𝗿𝘁𝗲𝗱 𝗦𝗲𝗻𝗱𝗶𝗻𝗴 𝗔𝗻𝗱 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗶𝗻𝗴 𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {D}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀)")
