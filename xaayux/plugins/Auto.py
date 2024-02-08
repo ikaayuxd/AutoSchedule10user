@@ -1,4 +1,4 @@
-from .. import client, TIME
+from .. import client, DELAY
 from telethon import events, types
 import logging 
 import asyncio
