@@ -27,7 +27,7 @@ ABOUT_TXT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
-@client.on(events.NewMessage(pattern=r'^@'))
+@client.on(events.NewMessage(pattern=r'^@.+'))
 async def join_group(event):
     group_username = event.raw_text
     try:
