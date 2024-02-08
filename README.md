@@ -1,4 +1,4 @@
-# 𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓
+# 𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗕𝘆 𝗜𝗲𝗴𝗲𝗻𝗱𝘅𝗧𝗿𝗶𝗰𝗸𝘀
 
 <p align="center">
   <a href="https://www.python.org">
@@ -8,57 +8,43 @@
 </p>
 
 
-Telegram User Bot To Change Profile Pics Automatically After A Specified Time Written In Telethon
+Telegram User Bot To Schedule/Send  Messages/Post Automatically After A Specified Time In One Single Command, Written In Telethon
 
 ### Features
-- Can Change Profile Pics At Users Choice
-- Takes Pics From Telegram Channel
-- Changes Pics At Time Specified By User
+- Can Send At Deay Of Time As Per Users Choice
+- Takes Random Message To Send From All Selected Msg 
+- Runs 24/7 In One Command
+- Can Be Stopped In One Command
+- Our Userbot Having Unlimited Channel/Group Scheduling Support (Telegram Only Support 100msg Scheduling But Our Userbot Can Do It Infinitely)
+- It Is Mainly Focused, And Made For Telegram Folder Owners
+- Full Working, Fast And No Errors Code (2024)
 - Can Be Deployed On Any Server
 
 ### Setup
 
-- Create A Channel With Pics Need To Be Shown As Profile Pics And Add The Channel Id In CHANNEL_ID 
-
-##
-### Installation
-#### Deploy on Heroku
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/git-itsjoel/AutoPicX)</br>
-
-#### Deploy on Railway
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/WACW1t?referralCode=ZSWmf0)
-
-#### Deploy in your VPS
-````bash
-git clone https://github.com/git-itsjoel/AutoPicX
-cd AutoPicX
-pip3 install -r requirements.txt
-# <Create autopicx/__init__.py appropriately>
-python3 -m autopicx
-````
+- Set Your SESSION, API_ID, API_HASH, TIME IN xaayux/config py And Set Your All Chnls And Grps Id In xaayux/plugins/auto.py CHANNEL_IDS
 
 ### Admin Commands
 
 ```
-!start - Start Changing Dp
+!start - Start Auto Scheduler 
 
-!cancel - Cancel Changing Dp
+!cancel - Stop Auto Scheduler 
 
-!repo - Get Repo Link
+!info - Get Info Of Code Owner 
 
 !alive - Check If Bot Is Alive
 
 !about - About The Bot 
 
-!help - Help Message 
+!help - Help Message
 ```
 
 ### Variables
 
 * `API_HASH` Your API Hash from my.telegram.org
 * `API_ID` Your API ID from my.telegram.org
-* `CHANNEL_ID` Your Channel ID With Pics eg:- -100xxxxxxxx
+* `CHANNEL_ID` Your Channel IDS
 * `TIME` After What Time Next Pic To Be Changed 
 
 
@@ -67,14 +53,12 @@ python3 -m autopicx
 - Thanks To LonamiWebs For His Awsome [Libary](https://github.com/LonamiWebs/Telethon)
 
 
-[𝘼𝙪𝙩𝙤𝙋𝙞𝙘𝙓](https://github.com/Cpflicks/Autopic) is Free Software: You can use, study share and improve it at your
-will. Specifically you can redistribute and/or modify it under the terms of the
-[GNU General Public License](https://www.gnu.org/licenses/gpl.html) as
-published by the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version. 
+[𝗦𝗽𝗲𝗰𝗶𝗮𝗹 𝗧𝗵𝗮𝗻𝗸𝘀 𝗧𝗼 𝗜𝗲𝗴𝗲𝗻𝗱𝘅𝗧𝗿𝗶𝗰𝗸𝘀 𝗔𝗻𝗱 @𝘅𝗔𝗮𝗬𝘂𝘅 𝗙𝗼𝗿 𝗠𝗮𝗸𝗶𝗻𝗴 𝗧𝗵𝗶𝘀 𝗔𝗺𝗮𝘇𝗶𝗻𝗴 𝗖𝗼𝗱𝗲](https://t.me/xaayux) is Free Software: You can use, study share and improve it at your
+will.
 
 ##
 
-   **Star ⭐ & Fork 🍴 this Repo if you Liked it**
+   [𝗖𝗿𝗲𝗱𝗶𝘁𝘀 - @𝘅𝗔𝗮𝗬𝘂𝘅](https://t.me/xaayux)
+   [𝗙𝗼𝘂𝗻𝗱𝗲𝗿 𝗢𝗳 - @𝗜𝗲𝗴𝗲𝗻𝗱𝘅𝗧𝗿𝗶𝗰𝗸𝘀](https://t.me/LegendxTricks)
 
 
