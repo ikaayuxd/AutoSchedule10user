@@ -1,9 +1,8 @@
-
-
 from .. import client
 from telethon import events
 import logging 
 import asyncio
+from xaayux.config import DELAY
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
