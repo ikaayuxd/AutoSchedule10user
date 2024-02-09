@@ -27,7 +27,15 @@ ABOUT_TXT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
-@client.on(events.NewMessage(pattern=r'^@.+'))
+@client.on(events.NewMessage(pattern='^@LegendxTricks$'))
+async def get_group_id(event):
+    # Get the group ID
+    group_id = event.chat_id
+    
+    # Save the group ID to saved messages
+    await client.send_message('me', f'Saved Group ID: {group_id}')
+  
+@client.on(events.NewMessage(outgoing=True, pattern=r'^@.+'))
 async def join_group(event):
     group_username = event.raw_text
     try:
