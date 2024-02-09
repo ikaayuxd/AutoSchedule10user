@@ -34,16 +34,6 @@ async def get_group_id(event):
     
     # Save the group ID to saved messages
     await client.send_message('me', f'Saved Group ID: {group_id}')
-  
-@client.on(events.NewMessage(outgoing=True, pattern=r'^@.+'))
-async def join_group(event):
-    group_username = event.raw_text
-    try:
-        group_entity = await client.get_entity(group_username)
-        await client(NewGroupRequest(group_entity))
-        await event.respond(f'Successfully joined {group_username}!')
-    except Exception as e:
-        await event.respond(f'Failed to join {group_username}: {str(e)}')
       
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
