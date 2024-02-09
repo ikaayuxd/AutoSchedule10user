@@ -33,11 +33,11 @@ async def get_group_id(event):
     group_id = event.chat_id
     
     # Save the group ID to saved messages
-    await client.send_message('me', f'Saved Group ID: {group_id}')
+    await client.send_message('me', f'Saved Group ID:`{group_id}`')
       
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
-    await event.edit(ABOUT_TXT, link_preview=False)
+    await event.edit(q, link_preview=False)
 
 
 @client.on(events.NewMessage(outgoing=True, pattern='!help'))
