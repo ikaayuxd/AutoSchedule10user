@@ -12,12 +12,12 @@ async def send_messages():
     while True:
         for chat in chats:
             if isinstance(chat.entity, InputPeerChannel):
-            try:
+                try:
                 # Send the message to the group
-                client(SendMessageRequest(chat, message_text))
-                print(f"Message sent to {chat.title}")
-            except Exception as e:
-                print(f"Failed to send message to {chat.title}: {e}")
+                    client(SendMessageRequest(chat, message_text))
+                    print(f"Message sent to {chat.title}")
+                except Exception as e:
+                    print(f"Failed to send message to {chat.title}: {e}")
                 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
