@@ -14,7 +14,7 @@ async def send_messages():
         for group_id in group_ids:
             try:
                 message = random.choice(messages)
-                await client.send_message(group_id, message)
+                await client.send_message(int(group_id), message)
                 await asyncio.sleep(1)
             except Exception as e:
                 await client.send_message(5488677608, f"Error sending message to channel {group_id}: {e}")
