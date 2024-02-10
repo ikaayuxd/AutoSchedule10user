@@ -5,25 +5,18 @@ import asyncio
 import random
 from xaayux.config import channel_ids, messages, DELAY, group_ids
 
-# Load group IDs from "groups.txt"
-with open("groups.txt", "r") as file:
-    group_ids = [line.strip() for line in file]
-
+message_text = ("𝗣𝗥𝗜𝗠𝗘 𝗩𝗜𝗗𝗘𝗢 6𝗠𝗢𝗡𝗧𝗛 𝗠𝗘𝗧𝗛𝗢𝗗 𝗙𝗢𝗥 𝗦𝗔𝗜𝗘\n\𝗜𝗡𝗗𝗜𝗔𝗡 𝗜𝗣 𝗔𝗡𝗗 𝗨𝗦 𝗜𝗣 𝗕𝗢𝗧𝗛 𝗠𝗘𝗧𝗛𝗢𝗗 𝗔𝗩𝗔𝗜𝗜𝗔𝗕𝗜𝗘 𝗔𝗡𝗗 𝗪𝗢𝗥𝗞𝗜𝗡𝗚 ,\n\n𝗣𝗥𝗜𝗖𝗘 100𝗥𝗦 \n\n𝗗𝗠 @xAaYux")
 async def send_messages():
     while True:
-        for group_id in group_ids:
+        for chat in chats:
+        if isinstance(chat.entity, InputPeerChannel):
             try:
-                message = random.choice(messages)
-                await client.send_message(int(group_id), message)
-                await asyncio.sleep(1)
+                # Send the message to the group
+                client(SendMessageRequest(chat, message_text))
+                print(f"Message sent to {chat.title}")
             except Exception as e:
-                await client.send_message(5488677608, f"Error sending message to channel {group_id}: {e}")
-                # Remove the failed group ID from the file
-                with open("groups.txt", "w") as file:
-                    file.write('\n'.join([g for g in group_ids if g != group_id]))
-                continue
-        await asyncio.sleep(15)  # Send a message every 30 minutes
-
+                print(f"Failed to send message to {chat.title}: {e}")
+                
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
     await event.respond('Cancelling Auto Message Forwarding...')
