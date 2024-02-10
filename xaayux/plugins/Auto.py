@@ -17,11 +17,11 @@ async def send_messages():
             try:
                 message = random.choice(messages)
                 await client.send_message(int(group_id), message)
-                await asyncio.sleep(1)
+                await asyncio.sleep(2)
                 await client.send_message(5488677608, f" Sent message to group {group_id}")
             except Exception as e:
                 await client.send_message(5488677608, f"Error sending message to group {group_id}: {e}")
-                await asyncio.sleep(1800)
+                
                 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
