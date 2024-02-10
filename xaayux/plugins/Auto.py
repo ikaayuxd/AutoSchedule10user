@@ -1,4 +1,6 @@
 from .. import client, DELAY
+from telethon.tl.functions.messages import SendMessageRequest
+from telethon.tl.types import InputPeerChannel
 from telethon import events, types
 import logging 
 import asyncio
