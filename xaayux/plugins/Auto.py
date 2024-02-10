@@ -7,7 +7,7 @@ import asyncio
 import random
 from xaayux.config import channel_ids, messages, DELAY, group_ids
 
-with open(groups_file, 'r') as file:
+with open(groups.txt, 'r') as file:
         group_ids = [line.strip() for line in file]
     
 async def send_messages():
