@@ -11,10 +11,11 @@ async def send_messages():
             try:
                 message = random.choice(messages)
                 await client.send_message(group_id, message)
+                await asyncio.sleep(1)
             except Exception as e:
                 await event.respond(f"Error sending message to channel {group_id}: {e}")
                 continue
-        await asyncio.sleep(DELAY)  # Send a message every 30 minutes
+        await asyncio.sleep(15)  # Send a message every 30 minutes
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
 async def handle_cancel(event):
