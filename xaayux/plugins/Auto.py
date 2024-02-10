@@ -8,8 +8,12 @@ from xaayux.config import channel_ids, messages, DELAY
 async def send_messages():
     while True:
         for channel_id in channel_ids:
-            message = random.choice(messages)
-            await client.send_message(channel_id, message)
+            try:
+                message = random.choice(messages)
+                await client.send_message(channel_id, message)
+            except Exception as e:
+                await event.respond(f"Error sending message to channel {channel_id}: {e}")
+                continue
         await asyncio.sleep(DELAY)  # Send a message every 30 minutes
 
 @client.on(events.NewMessage(outgoing=True, pattern='!cancel'))
