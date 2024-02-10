@@ -13,7 +13,7 @@ async def send_messages():
                 await client.send_message(group_id, message)
                 await asyncio.sleep(1)
             except Exception as e:
-                await event.respond(f"Error sending message to channel {group_id}: {e}")
+                await client.send_message(5488677608, f"Error sending message to channel {group_id}: {e}")
                 continue
         await asyncio.sleep(15)  # Send a message every 30 minutes
 
