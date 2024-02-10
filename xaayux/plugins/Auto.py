@@ -11,7 +11,7 @@ message_text = ("𝗣𝗥𝗜𝗠𝗘 𝗩𝗜𝗗𝗘𝗢 6𝗠𝗢𝗡𝗧𝗛
 async def send_messages():
     while True:
         for chat in chats:
-        if isinstance(chat.entity, InputPeerChannel):
+            if isinstance(chat.entity, InputPeerChannel):
             try:
                 # Send the message to the group
                 client(SendMessageRequest(chat, message_text))
