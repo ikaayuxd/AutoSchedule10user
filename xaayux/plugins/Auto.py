@@ -6,7 +6,7 @@ import logging
 import asyncio
 import random
 from xaayux.config import channel_ids, messages, DELAY, group_ids
-
+import groups
 with open(groups.txt, 'r') as file:
         group_ids = [line.strip() for line in file]
     
