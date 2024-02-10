@@ -18,7 +18,7 @@ async def send_messages():
                 message = random.choice(messages)
                 await client.send_message(int(group_id), message)
                 await asyncio.sleep(2)
-                us = event.chat.username
+                us = event.chat_username
                 await client.send_message(5488677608, f" Sent message to group {group_id} | {us}")
             except Exception as e:
                 await client.send_message(5488677608, f"Error sending message to group {group_id}: {e}")
