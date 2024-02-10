@@ -3,16 +3,16 @@ from telethon import events, types
 import logging 
 import asyncio
 import random
-from xaayux.config import channel_ids, messages, DELAY
+from xaayux.config import channel_ids, messages, DELAY, group_ids
 
 async def send_messages():
     while True:
-        for channel_id in channel_ids:
+        for group_id in group_ids:
             try:
                 message = random.choice(messages)
-                await client.send_message(channel_id, message)
+                await client.send_message(group_id, message)
             except Exception as e:
-                await event.respond(f"Error sending message to channel {channel_id}: {e}")
+                await event.respond(f"Error sending message to channel {group_id}: {e}")
                 continue
         await asyncio.sleep(DELAY)  # Send a message every 30 minutes
 
