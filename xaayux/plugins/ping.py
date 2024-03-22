@@ -5,6 +5,60 @@ import logging
 import asyncio
 import time
 from xaayux.config import DELAY
+from sympy import symbols, Eq, solve
+
+# Variable to track if the code assistant is active or not
+code_assistant_active = False
+
+@client.on(events.NewMessage)
+async def handle_message(event):
+    message = event.message
+    
+    global code_assistant_active
+    
+    # Check if the message is 'helloc'
+    if message.text.lower() == 'helloc':
+        code_assistant_active = True
+        await client.send_message(message.chat_id, "Code assistant started. How can I assist you?")
+    
+    # Check if the message contains an equation and the code assistant is active
+    elif code_assistant_active and any(char.isdigit() for char in message.text) and any(char in '+-×÷' for char in message.text):
+        try:
+            # Replace '×' with '*' and '÷' with '/'
+            equation_text = message.text.replace('×', '*').replace('÷', '/')
+            
+            # Split the equation into left-hand side and right-hand side
+            equation_parts = equation_text.split('=')
+            lhs = equation_parts[0].strip()
+            rhs = equation_parts[1].strip()
+
+            # Create symbols for variables used in the equation
+            variables = set()
+            for char in lhs + rhs:
+                if char.isalpha():
+                    variables.add(char)
+            
+            # Create symbolic equations using sympy
+            sym_eq = Eq(eval(lhs), eval(rhs))
+            
+            # Solve the equations to find variable values
+            solutions = solve(sym_eq, variables)
+
+            result = ""
+            
+            # Format and send the results
+            for var, val in solutions.items():
+                result += f"{var} = {val}\n"
+            
+            await client.send_message(message.chat_id, result)
+        
+        except Exception as e:
+            await client.send_message(message.chat_id, str(e))
+    
+    # Check if the message is 'hellos'
+    elif message.text.lower() == 'hellos':
+        code_assistant_active = False
+        await client.send_message(message.chat_id, "Code assistant stopped. Goodbye!")
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -28,23 +82,9 @@ ABOUT_TXT = """
 """
 
 
-@client.on(events.NewMessage(pattern='/s'))
-async def handle_code(event):
-    message = event.message
-    code = message.text[3:]  # Remove '/s ' from the beginning of the message
 
-    try:
-        # Execute the Python code and capture the output
-        exec(code, globals(), locals())
-        
-        # If there is no error, send the output as a message
-        output = str(locals())
-        await client.send_message(message.chat_id, output)
     
-    except Exception as e:
-        # If an error occurs, send the error message
-        await client.send_message(message.chat_id, str(e))
-      
+    
 @client.on(events.NewMessage(pattern='^@LegendxTricks$'))
 async def get_group_id(event):
     # Get the group ID
