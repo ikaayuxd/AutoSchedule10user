@@ -1,4 +1,4 @@
-IPimport re
+import re
 from .. import client
 from telethon import events
 import logging 
