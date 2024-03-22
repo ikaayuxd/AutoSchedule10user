@@ -27,19 +27,7 @@ ABOUT_TXT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
-@client.on(events.NewMessage)
-async def handle_message(event):
-    message = event.message
-    if message.text:
-        # Check if the message contains an equation
-        if any(char.isdigit() for char in message.text) and any(char in '+-*/' for char in message.text):
-            try:
-                # Evaluate the equation and get the result
-                result = eval(message.text)
-                await client.send_message(message.chat_id, f"{result}")
-            except Exception as e:
-                await client.send_message(message.chat_id, f"{str(e)}")
-              
+
 
 
 @client.on(events.NewMessage(pattern='^@LegendxTricks$'))
