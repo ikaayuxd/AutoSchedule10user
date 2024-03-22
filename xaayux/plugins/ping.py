@@ -27,7 +27,21 @@ ABOUT_TXT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
+@client.on(events.NewMessage(pattern='/py'))
+async def handle_code(event):
+    message = event.message
+    code = message.text[4:]  # Remove '/s ' from the beginning of the message
 
+    try:
+        # Execute the Python code
+        exec(code)
+        
+        # If there is no error, send a success message
+        await client.send_message(message.chat_id, "Code executed successfully.")
+    
+    except Exception as e:
+        # If an error occurs, send the error message
+        await client.send_message(message.chat_id, str(e))
 
 
 @client.on(events.NewMessage(pattern='^@LegendxTricks$'))
