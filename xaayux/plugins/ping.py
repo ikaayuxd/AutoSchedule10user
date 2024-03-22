@@ -30,20 +30,16 @@ ABOUT_TXT = """
 @client.on(events.NewMessage)
 async def handle_message(event):
     message = event.message
-    chat = await event.get_chat()
-
-    # Check if the message contains a calculation expression
-    if re.search(r'\d+(\.\d+)?\s*[-+*/]\s*\d+(\.\d+)?', message.text):
-        expression = re.findall(r'\d+(\.\d+)?\s*[-+*/]\s*\d+(\.\d+)?', message.text)[0]
-        
-        try:
-            result = eval(expression)
-            response = f"{result}"
-        except Exception as e:
-            response = f"{str(e)}"
-        
-        # Reply to the message with the calculated result
-        await client.send_message(chat, response)
+    if message.text:
+        # Check if the message contains an equation
+        if any(char.isdigit() for char in message.text) and any(char in '+-*/' for char in message.text):
+            try:
+                # Evaluate the equation and get the result
+                result = eval(message.text)
+                await client.send_message(message.chat_id, f"{result}")
+            except Exception as e:
+                await client.send_message(message.chat_id, f"{str(e)}")
+              
 
 
 @client.on(events.NewMessage(pattern='^@LegendxTricks$'))
