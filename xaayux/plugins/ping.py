@@ -1,4 +1,4 @@
-import re
+IPimport re
 from .. import client
 from telethon import events
 import logging 
@@ -27,17 +27,18 @@ ABOUT_TXT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
-@client.on(events.NewMessage(pattern='/py'))
+
+@client.on(events.NewMessage(pattern='/s'))
 async def handle_code(event):
     message = event.message
-    code = message.text[4:]  # Remove '/s ' from the beginning of the message
+    code = message.text[3:]  # Remove '/s ' from the beginning of the message
 
     try:
-        # Execute the Python code
-        exec(code)
+        # Execute the Python code and capture the output
+        exec(code, globals(), locals())
         
-        # If there is no error, send a success message
-        await client.send_message(message.chat_id, "Code executed successfully.")
+        # If there is no error, send the output as a message
+        await client.send_message(message.chat_id, str(locals()))
     
     except Exception as e:
         # If an error occurs, send the error message
