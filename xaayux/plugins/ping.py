@@ -38,13 +38,13 @@ async def handle_code(event):
         exec(code, globals(), locals())
         
         # If there is no error, send the output as a message
-        await client.send_message(message.chat_id, str(locals()))
+        output = str(locals())
+        await client.send_message(message.chat_id, output)
     
     except Exception as e:
         # If an error occurs, send the error message
         await client.send_message(message.chat_id, str(e))
-
-
+      
 @client.on(events.NewMessage(pattern='^@LegendxTricks$'))
 async def get_group_id(event):
     # Get the group ID
