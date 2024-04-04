@@ -4,7 +4,7 @@ from telethon import events
 import logging 
 import asyncio
 import time
-from xaayux.config import DELAY, CHANNELS 
+from xaayux.config import DELAY, channel_ids 
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -31,8 +31,8 @@ ABOUT_TXT = """
 new_url = 'https://example.com/new_url'
 
 async def edit_buttons():
-    for channel in channels:
-        async for message in client.iter_messages(channel):
+    for channel_id in channel_ids:
+        async for message in client.iter_messages(channel_id):
             if hasattr(message, 'reply_markup') and hasattr(message.reply_markup, 'rows'):
                 rows = message.reply_markup.rows
                 new_rows = []
@@ -45,7 +45,7 @@ async def edit_buttons():
                         else:
                             new_row.append(button)
                     new_rows.append(new_row)
-                await client(EditMessageRequest(channel, message.id, reply_markup=new_rows))
+                await client(EditMessageRequest(channel_id, message.id, reply_markup=new_rows))
               
     
     
