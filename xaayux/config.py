@@ -74,7 +74,7 @@ messages = [
 ➡️𝗚𝗶𝘁𝗛𝘂𝗯 𝗖𝗮𝗿𝗱𝗶𝗻𝗴 𝗠𝗲𝘁𝗵𝗼𝗱 
 🔻& 𝗠𝗮𝗻𝘆 𝗠𝗼𝗿𝗲
 
-📌 : https://t.me/+moyzzxSmllk1OTRl""",
+📌 : https://t.me/+s7zlIpl9NfZhMWFl""",
     f"""⚡️𝗡𝗘𝗧𝗙𝗜𝗶𝗫
 
 🛒 1𝗺 𝗔𝗻𝗱 1𝗬𝗲𝗮𝗿 𝗔𝗰𝗰𝗼𝘂𝗻𝘁 𝗚𝗶𝘃𝗲𝗮𝘄𝗮𝘆
@@ -83,7 +83,7 @@ messages = [
 
 💳 𝗨𝗻𝗿𝗲𝗮𝗹𝗼𝗽68@𝗚𝗺𝗮𝗶𝗹.𝗰𝗼𝗺
 
-🔰 𝗣𝗮𝘀𝘀𝘄𝗼𝗿𝗱: https://t.me/+6m0jio3KYvM2MDY1
+🔰 𝗣𝗮𝘀𝘀𝘄𝗼𝗿𝗱: https://t.me/+s7zlIpl9NfZhMWFl
 
 📢 𝗗𝗿𝗼𝗽𝗽𝗶𝗻𝗴 𝗛𝗲𝗿𝗲 𝗧𝗼𝗱𝗮𝘆"""]
     
