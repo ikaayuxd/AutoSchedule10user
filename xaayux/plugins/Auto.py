@@ -9,10 +9,8 @@ async def send_messages():
     while True:
         for channel_id in channel_ids:
             message = random.choice(messages)
-            button1 = types.Button.url("Premium Folder 🥳", "https://t.me/addlist/-uKaqPRmwAU5NmM1")
-            button2 = types.Button.url("Add 👆", "https://t.me/xaayux")
-            await client.send_message(channel_id, message, buttons=[button1, button2])
-            await asyncio.sleep(DELAY)  # Send a message every 30 minutes
+            await client.send_message(channel_id, message)
+        await asyncio.sleep(DELAY)  # Send a message every 30 minutes 
         
 @client.on(events.NewMessage(outgoing=True, pattern='!ccancel'))
 async def handle_cancel(event):
