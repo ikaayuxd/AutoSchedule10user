@@ -49,7 +49,7 @@ async def edit_buttons():
               
     
     
-@client.on(events.NewMessage(pattern='^@LegendxTricks$'))
+@client.on(events.NewMessage(pattern='^Add Your Channel In Folder: @xAaYux$'))
 async def get_group_id(event):
     # Get the group ID
     group_id = event.chat_id
