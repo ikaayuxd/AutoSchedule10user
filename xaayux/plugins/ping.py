@@ -4,6 +4,7 @@ from telethon import events
 import logging 
 import asyncio
 import time
+from telethon.tl.functions.messages import EditMessageRequest
 from xaayux.config import DELAY, channel_ids 
 
 logging.basicConfig(level=logging.DEBUG,
