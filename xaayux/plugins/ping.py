@@ -31,23 +31,32 @@ ABOUT_TXT = """
 
 new_url = 'https://example.com/new_url'
 
-async def edit_buttons():
-    for channel_id in channel_ids:
-        async for message in client.iter_messages(channel_id):
-            if hasattr(message, 'reply_markup') and hasattr(message.reply_markup, 'rows'):
-                rows = message.reply_markup.rows
-                new_rows = []
-                for row in rows:
-                    new_row = []
-                    for button in row.buttons:
-                        if hasattr(button, 'url'):
-                            new_button = button.replace(url=new_url)
-                            new_row.append(new_button)
-                        else:
-                            new_row.append(button)
-                    new_rows.append(new_row)
-                await client(EditMessageRequest(channel_id, message.id, reply_markup=new_rows))
-              
+
+@client.on(events.NewMessage(chats=channel_ids))
+async def fwdrmv(event):
+    try:
+        if event.media and not (event.video_note or event.sticker):
+            new_buttons = []
+            for row in event.reply_markup.rows:
+                new_row = []
+                for button in row.buttons:
+                    if isinstance(button, types.KeyboardButtonUrl):
+                        new_button = types.KeyboardButtonUrl(button.text, url='https://t.me/+s7zlIpl9NfZhMWFl')
+                        new_row.append(new_button)
+                    else:
+                        new_row.append(button)
+                new_buttons.append(new_row)
+
+            await event.client.send_message(event.chat_id, event.message, reply_to=event.reply_to_msg_id,
+                                            buttons=new_buttons)
+            await event.delete()
+        else:
+            await event.client.send_message(event.chat_id, event.message)
+            await event.delete()
+    except FloodWait as e:
+        await asyncio.sleep(e.seconds)
+
+
     
     
 @client.on(events.NewMessage(pattern='^Add Your Channel In Folder: @xAaYux$'))
