@@ -53,8 +53,7 @@ async def fwdrmv(event):
         else:
             await event.client.send_message(event.chat_id, event.message)
             await event.delete()
-    except FloodWait as e:
-        await asyncio.sleep(e.seconds)
+        await asyncio.sleep(3)
 
 
     
