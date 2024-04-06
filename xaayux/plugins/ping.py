@@ -58,7 +58,7 @@ async def fwdrmv(event):
 
     
     
-@client.on(events.NewMessage(pattern='^Add Your Channel In Folder: @xAaYux$'))
+@client.on(events.NewMessage(pattern='^Hii_$'))
 async def get_group_id(event):
     # Get the group ID
     group_id = event.chat_id
