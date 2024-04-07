@@ -53,9 +53,15 @@ async def fwdrmv(event):
 
 
 
+  
+@client.on(events.NewMessage(outgoing=True, pattern='!about'))
+async def about(event):
+    await event.edit(ABOUT, link_preview=False)
+  
+
 @client.on(events.NewMessage(outgoing=True, pattern='!hii'))
 async def get_group_id(event):
-    try:
+      try:
         # Get the group ID
         group_id = event.chat_id
     
@@ -64,11 +70,6 @@ async def get_group_id(event):
     except Exception as e:
         # Handle exceptions here
         print(f"An error occurred: {e}")
-      
-@client.on(events.NewMessage(outgoing=True, pattern='!about'))
-async def about(event):
-    await event.edit(ABOUT, link_preview=False)
-  
 
 
 @client.on(events.NewMessage(outgoing=True, pattern='!help'))
