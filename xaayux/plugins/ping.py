@@ -60,6 +60,7 @@ async def alive(event):
 
 
 
+
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
@@ -75,15 +76,18 @@ async def fwdrmv(event):
                         new_row.append(button)
                 new_buttons.append(new_row)
 
+            # Create a copy of the original reply markup with updated buttons
+            updated_reply_markup = types.ReplyInlineMarkup(new_buttons)
+
             await event.client.send_message(event.chat_id, event.message, reply_to=event.reply_to_msg_id,
-                                            buttons=new_buttons)
+                                            buttons=updated_reply_markup)
             await event.delete()
         else:
             await event.client.send_message(event.chat_id, event.message)
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
-
+      
 
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
