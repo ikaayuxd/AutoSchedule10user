@@ -36,16 +36,10 @@ async def about(event):
 
 @client.on(events.NewMessage(outgoing=True, pattern='!hii'))
 async def get_group_id(event):
-      try:
         # Get the group ID
         group_id = event.chat_id
-    
         # Save the group ID to saved messages
         await client.send_message('me', f'Saved Group ID:`{group_id}`')
-    except Exception as e:
-        # Handle exceptions here
-        print(f"An error occurred: {e}")
-
 
 @client.on(events.NewMessage(outgoing=True, pattern='!help'))
 async def help_me(event):
