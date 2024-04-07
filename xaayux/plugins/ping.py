@@ -52,7 +52,7 @@ async def fwdrmv(event):
             await event.delete()
         except Exception as e:
         # Handle exceptions here
-         print(f"An error occurred: {e}")
+            print(f"An error occurred: {e}")
          
 
 
