@@ -29,9 +29,6 @@ ABOUT_TXT = """
 """
 
 
-new_url = 'https://example.com/new_url'
-
-
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
@@ -80,9 +77,8 @@ async def alive(event):
     txt = await event.edit("▢▢▢▢▢▢")
     await event.edit("▣▢▢▢▢▢")
     await event.edit("▣▣▢▢▢▢")
-    await event.edit("▣▣▣▢▢▢")
-    await event.edit("▣▣▣▣▢▢")
-    await event.edit("▣▣▣▣▣▢")
-    await event.edit("▣▣▣▣▣▣")
-    
-    await event.edit(f"𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲.\n\n𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀). \n\n @LegendxTricks")
+    await event.edit("▣▣▣▢▢")
+    await event.edit("▣▣▣▣▢")
+    await event.edit("▣...
+
+# Add more code here if needed
