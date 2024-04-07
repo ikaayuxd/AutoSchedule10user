@@ -52,8 +52,8 @@ async def fwdrmv(event):
             await event.delete()
 
 
-    
-@client.on(events.NewMessage(pattern='hi'))
+
+@client.on(events.NewMessage(outgoing=True, pattern='!hii'))
 async def get_group_id(event):
     try:
         # Get the group ID
