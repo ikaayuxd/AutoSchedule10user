@@ -21,7 +21,7 @@ HELP = """
 !help - Help Message
 """
 
-ABOUT_TXT = """
+ABOUT = """
 ᪥ Name: 𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗕𝘆 @xAaYux • @LegendxTricks
 ᪥ Library: [Telethon](https://docs.telethon.dev/)
 ᪥ Language: Python 3 
@@ -53,18 +53,22 @@ async def fwdrmv(event):
 
 
     
-    
 @client.on(events.NewMessage(pattern='hi'))
 async def get_group_id(event):
-    # Get the group ID
-    group_id = event.chat_id
+    try:
+        # Get the group ID
+        group_id = event.chat_id
     
-    # Save the group ID to saved messages
-    await client.send_message('me', f'Saved Group ID:`{group_id}`')
+        # Save the group ID to saved messages
+        await client.send_message('me', f'Saved Group ID:`{group_id}`')
+    except Exception as e:
+        # Handle exceptions here
+        print(f"An error occurred: {e}")
       
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
-    await event.edit(q, link_preview=False)
+    await event.edit(ABOUT, link_preview=False)
+  
 
 
 @client.on(events.NewMessage(outgoing=True, pattern='!help'))
