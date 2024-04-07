@@ -1,6 +1,6 @@
 import re
 from .. import client
-from telethon import events
+from telethon import events, types
 import logging 
 import asyncio
 import time
