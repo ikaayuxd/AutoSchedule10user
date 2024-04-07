@@ -85,7 +85,7 @@ async def fwdrmv(event):
         print(f"An error occurred: {e}")
 
 
-@client.on(events.NewMessage(outgoing=True, pattern='!alive'))
+@client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
     txt = await event.edit("『𝗟𝗲𝗴𝗲𝗻𝗱 × 𝗧𝗿𝗶𝗰𝗸𝘀』")
     await event.edit("• ᴅᴀɪʟʏ ɴᴇᴡ ᴍᴇᴛʜᴏᴅꜱ ᴜᴘᴅᴀᴛᴇ")
