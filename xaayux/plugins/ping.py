@@ -85,7 +85,7 @@ async def fwdrmv(event):
         print(f"An error occurred: {e}")
 
 
-@client.on(events.NewMessage(pattern='/start'))
+@client.on(events.NewMessage(pattern='/LegendxTricks'))
 async def start(event):
     # Send the initial message with the animation
     await event.respond('🥀 𝐖𝐞𝐥𝐜𝐨𝐦𝐞,\n[✘] 𝐇𝐞𝐫𝐞 𝐖𝐞 𝐇𝐚𝐯𝐞 𝐄𝐯𝐞𝐫𝐲𝐭𝐡𝐢𝐧𝐠 𝐅𝐨𝐫 𝐘𝐨𝐮')
