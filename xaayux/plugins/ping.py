@@ -28,29 +28,6 @@ ABOUT = """
 ᪥ Dev: [⏤‌ＫＡＲＴＩＫ𓆩♡𓆪™|🇮🇳](https://t.me/xAaYux)
 """
 
-
-@client.on(events.NewMessage(chats=channel_ids))
-async def fwdrmv(event):
-    try:
-        if event.media and not (event.video_note or event.sticker):
-            new_buttons = []
-            for row in event.reply_markup.rows:
-                new_row = []
-                for button in row.buttons:
-                    if isinstance(button, types.KeyboardButtonUrl):
-                        new_button = types.KeyboardButtonUrl(button.text, url='https://t.me/+s7zlIpl9NfZhMWFl')
-                        new_row.append(new_button)
-                    else:
-                        new_row.append(button)
-                new_buttons.append(new_row)
-
-            await event.client.send_message(event.chat_id, event.message, reply_to=event.reply_to_msg_id,
-                                            buttons=new_buttons)
-            await event.delete()
-        else:
-            await event.client.send_message(event.chat_id, event.message)
-            await event.delete()
-        pass
   
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
@@ -86,3 +63,28 @@ async def alive(event):
     await event.edit("▣▣▣▣▣▣")
     
     await event.edit(f"𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲.\n\n𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀). \n\n @LegendxTricks")
+
+
+
+@client.on(events.NewMessage(chats=channel_ids))
+async def fwdrmv(event):
+    try:
+        if event.media and not (event.video_note or event.sticker):
+            new_buttons = []
+            for row in event.reply_markup.rows:
+                new_row = []
+                for button in row.buttons:
+                    if isinstance(button, types.KeyboardButtonUrl):
+                        new_button = types.KeyboardButtonUrl(button.text, url='https://t.me/+s7zlIpl9NfZhMWFl')
+                        new_row.append(new_button)
+                    else:
+                        new_row.append(button)
+                new_buttons.append(new_row)
+
+            await event.client.send_message(event.chat_id, event.message, reply_to=event.reply_to_msg_id,
+                                            buttons=new_buttons)
+            await event.delete()
+        else:
+            await event.client.send_message(event.chat_id, event.message)
+            await event.delete()
+        
