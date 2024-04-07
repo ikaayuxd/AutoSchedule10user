@@ -50,12 +50,7 @@ async def fwdrmv(event):
         else:
             await event.client.send_message(event.chat_id, event.message)
             await event.delete()
-        except Exception as e:
-        # Handle exceptions here
-            print(f"An error occurred: {e}")
-         
-
-
+        pass
   
 @client.on(events.NewMessage(outgoing=True, pattern='!about'))
 async def about(event):
