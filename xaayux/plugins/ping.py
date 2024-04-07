@@ -83,3 +83,49 @@ async def fwdrmv(event):
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
+
+
+@client.on(events.NewMessage(pattern='/start'))
+async def start(event):
+    # Send the initial message with the animation
+    await event.respond('🥀 𝐖𝐞𝐥𝐜𝐨𝐦𝐞,\n[✘] 𝐇𝐞𝐫𝐞 𝐖𝐞 𝐇𝐚𝐯𝐞 𝐄𝐯𝐞𝐫𝐲𝐭𝐡𝐢𝐧𝐠 𝐅𝐨𝐫 𝐘𝐨𝐮')
+    
+    # Define your animation frames using emojis, text, and symbols
+    frames = [
+        "『𝗟𝗲𝗴𝗲𝗻𝗱 × 𝗧𝗿𝗶𝗰𝗸𝘀』",
+"×ꜱᴘᴇᴄɪᴀʟ sᴛᴜғғs ɪɴ ᴏᴜʀ ᴄʜᴀɴɴᴇʟ×",
+"• ᴅᴀɪʟʏ ɴᴇᴡ ᴍᴇᴛʜᴏᴅꜱ ᴜᴘᴅᴀᴛᴇ,",
+"• ʜɪɢʜ Qᴜᴀʟɪᴛʏ ᴍᴇᴛʜᴏᴅꜱ,",
+"• ᴘᴀɪᴅ ᴍᴇᴛʜᴏᴅꜱ ꜰᴏʀ ꜰʀᴇᴇ,",
+"• ꜱᴜʙꜱᴄʀɪᴘᴛɪᴏɴꜱ ᴍᴇᴛʜᴏᴅꜱ,",
+"• ʙᴀɴ/ᴜɴʙᴀɴ ᴍᴇᴛʜᴏᴅꜱ,",
+"• ᴄᴏᴜʀꜱᴇꜱ, ᴍᴏᴅꜱ, ᴠɪʀᴜꜱᴇꜱ,",
+"• ʀᴀᴛꜱ /ꜱᴄʀɪᴘᴛꜱ,",
+"• ʀᴇғᴜɴᴅɪɴɢ / ʙʏᴘᴀssɪɴɢ,",
+"• ꜱᴇᴄʀᴇᴛ ᴛʀɪᴄᴋꜱ,",
+"• ꜱᴛᴜᴅʏ ᴍᴀᴛᴇʀɪᴀʟꜱ,",
+"• ᴅᴀʀᴋ ᴡᴇʙ ᴅᴇᴇᴘ ᴡᴇʙ,",
+"• ʙᴏᴍʙᴇʀ ᴀᴘᴘꜱ ᴀɴᴅ ᴡᴇʙ,",
+"• ᴛɢ ᴜꜱᴇꜰᴜʟ ʙᴏᴛꜱ,",
+"• ᴄᴀʀᴅɪɴɢ / ʙɪɴɴɪɴɢ / ʙᴀɴɴɪɴɢ ,",
+"• ꜱᴄʀᴀᴘᴘɪɴɢ / ᴊᴀᴄᴋɪɴɢ,",
+"• ʟᴏɢᴏ ᴍᴀᴋɪɴɢ,",
+"• ɪɢ ᴄᴄ,",
+"• ᴍᴏʀᴇ ᴀᴠᴀɪʟᴀʙʟᴇ,",
+"• ᴛᴏᴏʟꜱ / ʙᴜɢ ʜᴜɴᴛɪɴɢ ,",
+"• ʀᴅᴘ / ᴋᴀʟɪ ʟɪɴᴜx ,",
+"• ʜᴇʀᴏᴋᴜ ᴄᴄ ,",
+"• ᴀᴅᴠᴀɴᴄᴇᴅ ʙᴜʀᴘꜱᴜɪᴛᴇ ,",
+"• ᴇᴅᴜ ᴍᴀɪʟ / ᴏᴛᴘ ʙᴏᴛ ,",
+"• ᴄᴄ ᴛᴏ ʙᴛᴄ / ᴄᴄ ᴛᴏ ᴜᴘɪ ,",
+"• ᴡᴇʙ ᴅᴇᴠᴇʟᴏᴘᴍᴇɴᴛ ,",
+"• ꜱQʟ ɪɴᴊᴇᴄᴛɪᴏɴ / ꜱᴍᴍ ᴘᴀɴᴇʟ"
+    ]
+    
+    while True:
+        for frame in frames:
+            # Edit the message with the current frame of the animation
+            await event.respond(frame)
+            
+            # Sleep for a short duration to control the speed of the animation
+            await asyncio.sleep(0.1)
