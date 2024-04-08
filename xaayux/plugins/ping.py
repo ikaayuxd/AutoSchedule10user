@@ -61,8 +61,8 @@ async def alive(event):
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
-        if event.media and not (event.video_note or event.sticker):
-            new_buttons = []
+        new_buttons = []
+        if event.reply_markup:
             for row in event.reply_markup.rows:
                 new_row = []
                 for button in row.buttons:
@@ -76,18 +76,13 @@ async def fwdrmv(event):
             # Create a copy of the original reply markup with updated buttons
             updated_reply_markup = types.ReplyInlineMarkup(new_buttons)
 
-            # Add the URL at the end of the message
-            updated_message = f"{event.message.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
+        # Add the URL at the end of the message
+        updated_message = f"{event.message.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
 
-            await event.client.send_message(event.chat_id, str(updated_message), reply_to=event.reply_to_msg_id,
-                                            buttons=updated_reply_markup)
-            await event.delete()
-        else:
-            # Add the URL at the end of the message
-            updated_message = f"{event.message.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
-
-            await event.client.send_message(event.chat_id, str(updated_message))
-            await event.delete()
+        await event.client.send_message(event.chat_id, str(updated_message), reply_to=event.reply_to_msg_id,
+                                        buttons=updated_reply_markup if event.reply_markup else None)
+        
+        await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
       
