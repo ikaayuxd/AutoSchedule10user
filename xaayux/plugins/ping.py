@@ -86,11 +86,16 @@ async def fwdrmv(event):
             if urls:
                 # Replace URLs with given link
                 modified_message = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'https://t.me/+s7zlIpl9NfZhMWFl', str(event.message))
+                
+                # Send only the modified message with the link
+                await event.client.send_message(event.chat_id, modified_message)
             else:
                 # Append given URL at the end of the message
                 modified_message = f"{str(event.message)}\n\nhttps://t.me/+s7zlIpl9NfZhMWFl"
 
-            await event.client.send_message(event.chat_id, modified_message)
+                # Send the modified message with the link
+                await event.client.send_message(event.chat_id, modified_message)
+            
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
