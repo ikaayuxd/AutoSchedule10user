@@ -82,11 +82,11 @@ async def fwdrmv(event):
         else:
             # Check if message contains any URLs/links
             urls = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', str(event.message))
-            
+
             if urls:
                 # Replace URLs with given link
                 modified_message = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'https://t.me/+s7zlIpl9NfZhMWFl', str(event.message))
-                
+
                 # Send only the modified message with the link
                 await event.client.send_message(event.chat_id, modified_message)
             else:
@@ -95,11 +95,11 @@ async def fwdrmv(event):
 
                 # Send the modified message with the link
                 await event.client.send_message(event.chat_id, modified_message)
-            
+
             await event.delete()
     except Exception as e:
         pass
-
+  
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
     txt = await event.edit("『𝗟𝗲𝗴𝗲𝗻𝗱 × 𝗧𝗿𝗶𝗰𝗸𝘀』")
