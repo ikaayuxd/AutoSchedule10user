@@ -76,7 +76,7 @@ async def fwdrmv(event):
             # Create a copy of the original reply markup with updated buttons
             updated_reply_markup = types.ReplyInlineMarkup(new_buttons)
 
-            await event.client.send_message(event.chat_id, str(event.message), reply_to=event.reply_to_msg_id,
+            await event.client.send_message(event.chat_id, '', reply_to=event.reply_to_msg_id,
                                             buttons=updated_reply_markup)
             await event.delete()
         else:
@@ -98,8 +98,7 @@ async def fwdrmv(event):
             
             await event.delete()
     except Exception as e:
-        print(f"An error occurred: {e}")
-      
+        pass
 
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
