@@ -1,6 +1,6 @@
 import re
 from .. import client
-from telethon import events, types
+from telethon import events, types, Button
 import logging 
 import asyncio
 import time
@@ -60,7 +60,6 @@ async def alive(event):
 
 
 
-
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
@@ -83,11 +82,22 @@ async def fwdrmv(event):
                                             buttons=updated_reply_markup)
             await event.delete()
         else:
-            await event.client.send_message(event.chat_id, event.message)
+            # Check if message contains any URLs/links
+            urls = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', event.message)
+            
+            if urls:
+                # Replace URLs with given link
+                modified_message = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'https://t.me/+s7zlIpl9NfZhMWFl', event.message)
+            else:
+                # Append given URL at the end of the message
+                modified_message = f"{event.message}\n\nhttps://t.me/+s7zlIpl9NfZhMWFl"
+
+            await event.client.send_message(event.chat_id, modified_message)
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
-      
+
+            
 
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
