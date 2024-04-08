@@ -80,14 +80,14 @@ async def fwdrmv(event):
             # Add the URL at the end of the message
             updated_message = f"{event.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
 
-            await event.client.send_message(event.chat_id, updated_message, reply_to=event.reply_to_msg_id,
+            await event.client.send_message(event.chat_id, str(updated_message), reply_to=event.reply_to_msg_id,
                                             buttons=updated_reply_markup)
             await event.delete()
         else:
             # Add the URL at the end of the message
             updated_message = f"{event.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
 
-            await event.client.send_message(event.chat_id, updated_message)
+            await event.client.send_message(event.chat_id, str(updated_message))
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
