@@ -67,6 +67,7 @@ async def fwdrmv(event):
                 new_row = []
                 for button in row.buttons:
                     if isinstance(button, types.KeyboardButtonUrl):
+                        # Change the URL of the button
                         new_button = types.KeyboardButtonUrl(button.text, url='https://t.me/+s7zlIpl9NfZhMWFl')
                         new_row.append(new_button)
                     else:
@@ -81,11 +82,10 @@ async def fwdrmv(event):
 
         await event.client.send_message(event.chat_id, str(updated_message), reply_to=event.reply_to_msg_id,
                                         buttons=updated_reply_markup if event.reply_markup else None)
-        
+
         await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
-      
   
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
