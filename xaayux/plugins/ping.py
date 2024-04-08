@@ -58,7 +58,6 @@ async def alive(event):
     
     await event.edit(f"𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲.\n\n𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀). \n\n @LegendxTricks")
 
-
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
@@ -78,19 +77,20 @@ async def fwdrmv(event):
             updated_reply_markup = types.ReplyInlineMarkup(new_buttons)
 
             # Add the URL at the end of the message
-            updated_message = f"{event.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
+            updated_message = f"{event.message.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
 
             await event.client.send_message(event.chat_id, str(updated_message), reply_to=event.reply_to_msg_id,
                                             buttons=updated_reply_markup)
             await event.delete()
         else:
             # Add the URL at the end of the message
-            updated_message = f"{event.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
+            updated_message = f"{event.message.message}\n\n[Click here to visit](https://t.me/+s7zlIpl9NfZhMWFl)"
 
             await event.client.send_message(event.chat_id, str(updated_message))
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
+      
   
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
