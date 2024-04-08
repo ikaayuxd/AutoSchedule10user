@@ -58,8 +58,6 @@ async def alive(event):
     
     await event.edit(f"𝗔𝘂𝘁𝗼 𝗦𝗰𝗵𝗲𝗱𝘂𝗹𝗲𝗿 𝗨𝘀𝗲𝗿𝗯𝗼𝘁 𝗜𝘀 𝗔𝗰𝘁𝗶𝘃𝗲.\n\n𝗗𝗲𝗮𝗹𝘆 𝗜𝘀 𝗦𝗲𝘁 𝗧𝗼 {DELAY}(𝗦𝗲𝗰𝗼𝗻𝗱𝘀). \n\n @LegendxTricks")
 
-
-
 @client.on(events.NewMessage(chats=channel_ids))
 async def fwdrmv(event):
     try:
@@ -78,26 +76,25 @@ async def fwdrmv(event):
             # Create a copy of the original reply markup with updated buttons
             updated_reply_markup = types.ReplyInlineMarkup(new_buttons)
 
-            await event.client.send_message(event.chat_id, event.message, reply_to=event.reply_to_msg_id,
+            await event.client.send_message(event.chat_id, str(event.message), reply_to=event.reply_to_msg_id,
                                             buttons=updated_reply_markup)
             await event.delete()
         else:
             # Check if message contains any URLs/links
-            urls = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', event.message)
+            urls = re.findall(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', str(event.message))
             
             if urls:
                 # Replace URLs with given link
-                modified_message = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'https://t.me/+s7zlIpl9NfZhMWFl', event.message)
+                modified_message = re.sub(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', 'https://t.me/+s7zlIpl9NfZhMWFl', str(event.message))
             else:
                 # Append given URL at the end of the message
-                modified_message = f"{event.message}\n\nhttps://t.me/+s7zlIpl9NfZhMWFl"
+                modified_message = f"{str(event.message)}\n\nhttps://t.me/+s7zlIpl9NfZhMWFl"
 
             await event.client.send_message(event.chat_id, modified_message)
             await event.delete()
     except Exception as e:
         print(f"An error occurred: {e}")
-
-            
+      
 
 @client.on(events.NewMessage(outgoing=True, pattern='LegendxTricks'))
 async def alive(event):
