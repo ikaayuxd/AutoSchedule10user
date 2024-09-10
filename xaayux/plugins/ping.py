@@ -1,20 +1,21 @@
 import re
 from .. import client
 import asyncio
-from telethon import TelegramClient, events, types
-from telethon.sync import TelegramClient
-from telethon import functions, types
-from telethon.tl.functions.messages import SendReactionRequest
+from telethon import TelegramClient, events, types 
+from telethon.tl.functions.messages import SendReactionRequest 
 
-
-@client.on(events.NewMessage)
+@client.on(events.NewMessage) 
 async def reaction_handler(event):
     chat = await event.get_chat()
     message_id = event.id
-    await client(SendReactionRequest(
-        peer=chat,
-        msg_id=message_id,
-        reaction=Reaction(
-            emoticon='❤'
-        )
-    ))
+
+    try:
+        await client(SendReactionRequest(
+            peer=chat,
+            msg_id=message_id,
+            reaction=types.Reaction(  # Use types.Reaction here
+                emoticon='❤'  
+            )
+        ))
+    except Exception as e:
+        print(f"Error sending reaction: {e}") 
