@@ -13,7 +13,7 @@ async def reaction_handler(event):
         await client(SendReactionRequest(
             peer=chat,
             msg_id=message_id,
-            reaction=types.Reaction(  # Use types.Reaction here
+            reaction=types.ReactionEmoji(  # Use types.Reaction here
                 emoticon='❤'  
             )
         ))
