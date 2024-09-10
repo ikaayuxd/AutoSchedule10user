@@ -1,19 +1,22 @@
 import re
 from .. import client
+from telethon import TelegramClient, events, functions, types
 import asyncio
-from telethon import TelegramClient, events, types 
-from telethon.tl.functions.messages import SendReactionRequest 
 
-@client.on(events.NewMessage) 
-async def reaction_handler(event):
-    chat = await event.get_chat()
-    message_id = event.id
+@client.on(events.NewMessage)
+async def handler(event):
+    if event.is_channel: # Check if the message is from a channel
+        try:
+            await client(functions.messages.SendReactionRequest(
+                peer=event.chat_id,
+                msg_id=event.id,
+                big=True,
+                add_to_recent=True,
+                reaction=[types.ReactionEmoji(emoticon='♥️')]
+            ))
+            print(f"Reacted to message from {event.chat.title} with ♥️")
 
-    try:
-        await client(SendReactionRequest(
-            peer=chat,
-            msg_id=message_id,
-            reaction='❤' # Pass the emoji directly as a string 
-        ))
-    except Exception as e:
-        print(f"Error sending reaction: {e}") 
+            await asyncio.sleep(2) # Flood wait of 2 seconds before the next reaction
+
+        except Exception as e:
+            print(f"Error: {e}")
