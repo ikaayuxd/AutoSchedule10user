@@ -13,9 +13,7 @@ async def reaction_handler(event):
         await client(SendReactionRequest(
             peer=chat,
             msg_id=message_id,
-            reaction=types.ReactionEmoji(  # Use types.Reaction here
-                emoticon='❤'  
-            )
+            reaction='❤' # Pass the emoji directly as a string 
         ))
     except Exception as e:
         print(f"Error sending reaction: {e}") 
