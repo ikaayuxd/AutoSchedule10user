@@ -17,19 +17,6 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
 
-async def run_clients():
-    # Start both clients simultaneously
-    async with client, client2:
-        await client.start()
-        print("Client 1 started!")
-        await client2.start()
-        print("Client 2 started!")
-
-        # Now both clients are running concurrently
-        await asyncio.gather(
-            client.run_until_disconnected(),
-            client2.run_until_disconnected()
-        )
-
-if __name__ == '__main__':
-    asyncio.run(run_clients())
+if __name__ == "__main__":
+    client.run_until_disconnected() # Run client1
+    client2.run_until_disconnected() # Run client2
