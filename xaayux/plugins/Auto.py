@@ -3,6 +3,8 @@ from .. import client2 # Import both clients
 from telethon import TelegramClient, events, functions, types
 import asyncio
 
+CHANNEL_IDS = [-1001966404031, -1002495106403] # Replace with your actual channel IDs
+
 @client2.on(events.NewMessage(chats=CHANNEL_IDS))
 async def handler_client2(event):
     if event.is_channel:
