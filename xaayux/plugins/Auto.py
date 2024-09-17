@@ -1,26 +1,20 @@
-from .. import client, DELAY
-from telethon import events, types, Button
-import logging 
+import re
+from .. import client2 # Import both clients
+from telethon import TelegramClient, events, functions, types
 import asyncio
-import random
-from xaayux.config import channel_ids, messages, DELAY
 
-async def send_messages():
-    while True:
-        for channel_id in channel_ids:
-            message = random.choice(messages)
-            await client.send_message(channel_id, message)
-        await asyncio.sleep(DELAY)  # Send a message every 30 minutes 
-        
-@client.on(events.NewMessage(outgoing=True, pattern='!ccancel'))
-async def handle_cancel(event):
-    await event.respond('Cancelling Auto Message Forwarding...')
-    global send_task
-    send_task.cancel()
-
-@client.on(events.NewMessage(outgoing=True, pattern='!cstart'))
-async def handle_start(event):
-    await event.respond("Starting Auto Message Forwarding...")
-    global send_task
-    send_task = asyncio.create_task(send_messages())
-
+@client2.on(events.NewMessage(chats=CHANNEL_IDS))
+async def handler_client2(event):
+    if event.is_channel:
+        try:
+            await event.client(functions.messages.SendReactionRequest(
+                peer=event.chat_id,
+                msg_id=event.id,
+                big=True,
+                add_to_recent=True,
+                reaction=[types.ReactionEmoji(emoticon='🥰')]
+            ))
+            print(f"Client 2 reacted to message from {event.chat.title} with 🥰")
+            await asyncio.sleep(2)
+        except Exception as e:
+            print(f"Client 2 Error: {e}")
