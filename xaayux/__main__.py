@@ -1,12 +1,11 @@
-import glob
-from pathlib import Path
+# In your main bot script
+from .. import client, client2
 from .utils import load_plugins
-import logging
-from . import client, client2 # Assuming client2 is defined in your '.__init__.py'
+import asyncio
 
-logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
-                    level=logging.WARNING)
+# ... your other code ...
 
+# Load plugins (after initializing clients)
 path = "xaayux/plugins/*.py"
 files = glob.glob(path)
 for name in files:
@@ -15,8 +14,13 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
 
-print("Successfully deployed!")
+# Start your clients
+async with client:
+    await client.start()
+    print("Client 1 started!")
+    await client.run_until_disconnected()
 
-if __name__ == '__main__':
-    client.run_until_disconnected() # Run client1
-    client2.run_until_disconnected() # Run client2
+async with client2:
+    await client2.start()
+    print("Client 2 started!")
+    await client2.run_until_disconnected()
