@@ -38,3 +38,6 @@ async def handler_client2(event):
         except Exception as e:
             print(f"Client 2 Error: {e}")
 
+with client2:
+    client2.run_until_disconnected()
+        
