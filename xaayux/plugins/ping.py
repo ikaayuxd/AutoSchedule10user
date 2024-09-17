@@ -37,3 +37,10 @@ async def handler_client2(event):
             await asyncio.sleep(2)
         except Exception as e:
             print(f"Client 2 Error: {e}")
+
+
+with client:
+    client.run_until_disconnected()
+
+with client2:
+    client2.run_until_disconnected()
