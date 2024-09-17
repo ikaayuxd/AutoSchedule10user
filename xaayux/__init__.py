@@ -18,7 +18,7 @@ else:
 if SESSION2 is not None:
     session2 = StringSession(str(SESSION2))
 else:
-    session2 = "pyrobot"
+    session2 = "pyrobot2"
 
 try:
     client = TelegramClient(
