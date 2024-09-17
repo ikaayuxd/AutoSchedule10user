@@ -16,6 +16,7 @@ async def handler_client1(event):
                 big=True,
                 add_to_recent=True,
                 reaction=[types.ReactionEmoji(emoticon='❤️')]
+            ))
             await event.client2(functions.messages.SendReactionRequest(
                 peer=event.chat_id,
                 msg_id=event.id,
