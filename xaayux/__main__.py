@@ -17,6 +17,6 @@ for name in files:
 
 print("Successfully deployed!")
 
-if name == "main":
+if __name__ == '__main__':
     client.run_until_disconnected() # Run client1
     client2.run_until_disconnected() # Run client2
