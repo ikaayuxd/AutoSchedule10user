@@ -24,6 +24,3 @@ async def handle_start(event):
     global send_task
     send_task = asyncio.create_task(send_messages())
 
-with client:
-    client.run_until_disconnected()
-        
