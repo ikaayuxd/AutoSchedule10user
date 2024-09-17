@@ -28,7 +28,7 @@ async def handler(event):
 
 
 @client2.on(events.NewMessage)
-async def handler(event):
+async def handler2(event):
     if event.is_channel: # Check if the message is from a channel
         # Check if the channel ID is in the list
         if event.chat_id in CHANNEL_IDS:
