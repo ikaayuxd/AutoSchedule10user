@@ -2,7 +2,7 @@ import glob
 from pathlib import Path
 from .utils import load_plugins
 import logging
-from . import client
+from . import client, client2 # Assuming client2 is defined in your '.__init__.py'
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.WARNING)
@@ -17,6 +17,6 @@ for name in files:
 
 print("Successfully deployed!")
 
-if __name__ == "__main__":
-    client.run_until_disconnected()
-
+if name == "main":
+    client.run_until_disconnected() # Run client1
+    client2.run_until_disconnected() # Run client2
