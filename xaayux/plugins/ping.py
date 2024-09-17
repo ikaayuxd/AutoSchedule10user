@@ -38,9 +38,9 @@ async def handler(event):
                     msg_id=event.id,
                     big=True,
                     add_to_recent=True,
-                    reaction=[types.ReactionEmoji(emoticon='💀')]
+                    reaction=[types.ReactionEmoji(emoticon='🥰')]
                 ))
-                print(f"Reacted to message from {event.chat.title} with 💀")
+                print(f"Reacted to message from {event.chat.title} with 🥰")
 
                 await asyncio.sleep(2) # Flood wait of 2 seconds before the next reaction
 
