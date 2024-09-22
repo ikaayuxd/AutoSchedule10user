@@ -18,14 +18,15 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
 
-if __name__ == "__main__":
+if name == "main":
     async def main():
-        async with asyncio.new_event_loop() as loop:
-            asyncio.set_event_loop(loop)
-            # Start both clients within the event loop
-            await client.start()
-            await client2.start()
-            await client.run_until_disconnected() 
-            await client2.run_until_disconnected()
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        # Start both clients within the event loop
+        await client.start()
+        await client2.start()
+        await client.run_until_disconnected() 
+        await client2.run_until_disconnected()
+        loop.close() # Close the loop after finishing
 
     asyncio.run(main())
