@@ -3,7 +3,7 @@ from .. import client, client2 # Import both clients
 from telethon import TelegramClient, events, functions, types
 import asyncio
 
-# Define your channel IDs as a single variable
+
 CHANNEL_IDS = [-1001966404031, -1002495106403] # Replace with your actual channel IDs
 
 async def react_to_message(event, client):
@@ -28,4 +28,17 @@ async def handler_client1(event):
 @client2.on(events.NewMessage(chats=CHANNEL_IDS))
 async def handler_client2(event):
     await react_to_message(event, event.client)
+if __name__ == "__main__":
+    # Initialize your clients here (assuming you have code for this)
+    client = TelegramClient(...)  
+    client2 = TelegramClient(...)
 
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(client.start())
+    loop.run_until_complete(client2.start())
+
+    # Add your event handlers here
+    client.add_event_handler(handler_client1)
+    client2.add_event_handler(handler_client2)
+
+    loop.run_forever()
