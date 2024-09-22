@@ -18,7 +18,7 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
 
-if name == "main":
+if __name__ == "__main__":
     async def main():
         async with asyncio.new_event_loop() as loop:
             asyncio.set_event_loop(loop)
