@@ -1,5 +1,4 @@
 import logging 
-import asyncio
 from os import environ
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
@@ -46,8 +45,8 @@ try:
             print("Client 2 started!")
             # ... rest of your bot logic ...
 
-    # Start the asynchronous function
-    asyncio.run(run_clients()) 
+    # Run the asynchronous function with the event loop
+    asyncio.run(run_clients())
 
 except Exception as e:
     print(e)
