@@ -5,6 +5,7 @@ from telethon import TelegramClient, events
 from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from xaayux.config import API_ID, API_HASH, SESSION, SESSION2, channel_ids, DELAY
+import asyncio 
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
@@ -46,8 +47,13 @@ try:
             print("Client 2 started!")
             # ... rest of your bot logic ...
 
-    # Run the asynchronous function with the event loop
-    asyncio.run(run_clients())
+    # Explicitly create an event loop and run the clients
+    async def main():
+        async with asyncio.new_event_loop() as loop:
+            asyncio.set_event_loop(loop)
+            await run_clients()
+
+    asyncio.run(main())
 
 except Exception as e:
     print(e)
