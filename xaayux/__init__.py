@@ -1,4 +1,5 @@
 import logging 
+import asyncio
 from os import environ
 from telethon import TelegramClient, events
 from telethon.sessions import StringSession
@@ -36,13 +37,17 @@ try:
         connection=ConnectionTcpAbridged
     )
 
-    # Start both clients asynchronously
-    async with client, client2:
-        await client.start()
-        print("Client 1 started!")
-        await client2.start()
-        print("Client 2 started!")
-        # ... rest of your bot logic ...
+    # Define an asynchronous function to run the clients
+    async def run_clients():
+        async with client, client2:
+            await client.start()
+            print("Client 1 started!")
+            await client2.start()
+            print("Client 2 started!")
+            # ... rest of your bot logic ...
+
+    # Start the asynchronous function
+    asyncio.run(run_clients()) 
 
 except Exception as e:
     print(e)
