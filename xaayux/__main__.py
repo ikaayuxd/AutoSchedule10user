@@ -1,4 +1,5 @@
 import glob
+import asyncio
 from pathlib import Path
 from .utils import load_plugins
 import asyncio
@@ -17,6 +18,14 @@ for name in files:
         plugin_name = patt.stem
         load_plugins(plugin_name.replace(".py", ""))
 
-if __name__ == "__main__":
-    client.run_until_disconnected() # Run client1
-    client2.run_until_disconnected() # Run client2
+if name == "main":
+    async def main():
+        async with asyncio.new_event_loop() as loop:
+            asyncio.set_event_loop(loop)
+            # Start both clients within the event loop
+            await client.start()
+            await client2.start()
+            await client.run_until_disconnected() 
+            await client2.run_until_disconnected()
+
+    asyncio.run(main())
