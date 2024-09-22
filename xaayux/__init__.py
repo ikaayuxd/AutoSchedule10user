@@ -21,13 +21,13 @@ else:
     session2 = "pyrobot2"
 
 try:
+    # Create both clients
     client = TelegramClient(
         session=session1,
         api_id=API_ID,
         api_hash=API_HASH,
         connection=ConnectionTcpAbridged
     )
-    client.start()
 
     client2 = TelegramClient(
         session=session2,
@@ -35,7 +35,14 @@ try:
         api_hash=API_HASH,
         connection=ConnectionTcpAbridged
     )
-    client2.start()
+
+    # Start both clients asynchronously
+    async with client, client2:
+        await client.start()
+        print("Client 1 started!")
+        await client2.start()
+        print("Client 2 started!")
+        # ... rest of your bot logic ...
 
 except Exception as e:
     print(e)
