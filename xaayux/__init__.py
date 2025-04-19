@@ -1,59 +1,56 @@
 import logging 
 import asyncio
-from os import environ
-from telethon import TelegramClient, events
+from telethon import TelegramClient
 from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
-from xaayux.config import API_ID, API_HASH, SESSION, SESSION2, channel_ids, DELAY
-import asyncio 
+from xaayux import config
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
 
-# Session 1
-if SESSION is not None:
-    session1 = StringSession(str(SESSION))
-else:
-    session1 = "pyrobot"
+# Collect all session strings in a list dynamically
+sessions = []
+for i in range(1, 11):
+    session_var = f'SESSION{i}'
+    session_value = getattr(config, session_var, None)
+    sessions.append(session_value)
 
-# Session 2
-if SESSION2 is not None:
-    session2 = StringSession(str(SESSION2))
-else:
-    session2 = "pyrobot2"
+clients = []
 
-try:
-    # Create both clients
-    client = TelegramClient(
-        session=session1,
-        api_id=API_ID,
-        api_hash=API_HASH,
-        connection=ConnectionTcpAbridged
-    )
+# Create TelegramClient instances for each valid session string
+for i, session_str in enumerate(sessions):
+    if session_str is not None:
+        try:
+            session = StringSession(str(session_str))
+            client = TelegramClient(
+                session=session,
+                api_id=config.API_ID,
+                api_hash=config.API_HASH,
+                connection=ConnectionTcpAbridged
+            )
+            clients.append(client)
+            logging.info(f"Client {i+1} created.")
+        except Exception as e:
+            logging.error(f"Failed to create client {i+1}: {e}")
 
-    client2 = TelegramClient(
-        session=session2,
-        api_id=API_ID,
-        api_hash=API_HASH,
-        connection=ConnectionTcpAbridged
-    )
+# Define an asynchronous function to run all clients concurrently
+async def run_clients():
+    tasks = []
+    for i, client in enumerate(clients):
+        tasks.append(asyncio.create_task(start_client(client, i+1)))
+    await asyncio.gather(*tasks)
 
-    # Define an asynchronous function to run the clients
-    async def run_clients():
-        async with client, client2:
-            await client.start()
-            print("Client 1 started!")
-            await client2.start()
-            print("Client 2 started!")
-            # ... rest of your bot logic ...
+async def start_client(client, client_number):
+    try:
+        await client.start()
+        logging.info(f"Client {client_number} started!")
+        await client.run_until_disconnected()
+    except Exception as e:
+        logging.error(f"Client {client_number} encountered an error: {e}")
 
-    # Explicitly create an event loop and run the clients
-    async def main():
-        async with asyncio.new_event_loop() as loop:
-            asyncio.set_event_loop(loop)
-            await run_clients()
+# Explicitly create an event loop and run the clients
+async def main():
+    await run_clients()
 
+if __name__ == "__main__":
     asyncio.run(main())
-
-except Exception as e:
-    print(e)
