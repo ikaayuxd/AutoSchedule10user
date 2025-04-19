@@ -4,6 +4,7 @@ from telethon import TelegramClient
 from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from xaayux import config
+import xaayux.plugins.ping as ping_plugin
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
@@ -33,8 +34,13 @@ for i, session_str in enumerate(sessions):
         except Exception as e:
             logging.error(f"Failed to create client {i+1}: {e}")
 
+# Register plugins for all clients
+async def register_plugins():
+    await ping_plugin.setup(clients)
+
 # Define an asynchronous function to run all clients concurrently
 async def run_clients():
+    await register_plugins()
     tasks = []
     for i, client in enumerate(clients):
         tasks.append(asyncio.create_task(start_client(client, i+1)))
