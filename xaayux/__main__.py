@@ -1,4 +1,5 @@
 import glob
+from xaayux import main
 import asyncio
 from pathlib import Path
 from .utils import load_plugins
@@ -29,4 +30,5 @@ if name == "main":
         await client2.run_until_disconnected()
         loop.close() # Close the loop after finishing
 
+if __name__ == "__main__":
     asyncio.run(main())
