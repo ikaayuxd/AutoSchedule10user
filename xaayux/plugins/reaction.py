@@ -1,19 +1,20 @@
 import asyncio
+import random
 from telethon import events, functions, types
-
-CHANNEL_IDS = [-1001966404031, -1002652394848]  # Replace with your actual channel IDs
+from config import CHANNEL_IDS, EMOJIS
 
 async def react_to_message(event, client):
     if event.is_channel:
         try:
+            emoji = random.choice(EMOJIS)
             await client(functions.messages.SendReactionRequest(
                 peer=event.chat_id,
                 msg_id=event.id,
                 big=True,
                 add_to_recent=True,
-                reaction=[types.ReactionEmoji(emoticon='❤️')]
+                reaction=[types.ReactionEmoji(emoticon=emoji)]
             ))
-            print(f"Client reacted to message from {event.chat.title} with ❤️")
+            print(f"Client reacted to message from {event.chat.title} with {emoji}")
             await asyncio.sleep(2)
         except Exception as e:
             print(f"Client Error: {e}")
