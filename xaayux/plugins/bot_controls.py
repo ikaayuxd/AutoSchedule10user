@@ -2,10 +2,10 @@ import asyncio
 from telethon import events, TelegramClient
 from telethon.tl.functions.channels import JoinChannelRequest, LeaveChannelRequest
 from telethon.sessions import StringSession
-from xaayux.config import ADMIN_ID, BOT_TOKEN
+from xaayux.config import ADMIN_ID, BOT_TOKEN, API_ID, API_HASH
 
 bot_session = StringSession()
-bot_client = TelegramClient(bot_session, api_id=0, api_hash='')
+bot_client = TelegramClient(bot_session, api_id=API_ID, api_hash=API_HASH)
 
 async def start_bot(clients):
     await bot_client.start(bot_token=BOT_TOKEN)
