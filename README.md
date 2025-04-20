@@ -55,30 +55,31 @@ Usage
 Run the userbots with:
 
 python3 -m xaayux
-This will start all configured userbots concurrently. Each userbot will listen for new messages in the specified channels and react with a heart emoji ❤️ automatically.```
+This will start all configured userbots concurrently. Each userbot will listen for new messages in the specified channels and react with a heart emoji ❤️ automatically.
+```
 
-## Project Structure
+### Project Structure
 xaayux/config.py: Configuration for API credentials, session strings, and other settings.
 xaayux/__init__.py: Initializes Telegram clients, registers plugins, and runs clients concurrently.
 xaayux/__main__.py: Entry point to start the application.
 xaayux/plugins/reaction.py: Plugin that handles reacting to new messages in specified channels.
 requirements.txt: Python dependencies.
 
-## Extending the Project
+### Extending the Project
 Add more plugins in the xaayux/plugins/ directory.
 Modify or add new event handlers to automate other Telegram interactions.
 Scale beyond 10 userbots by extending the session management logic.
 
-## Troubleshooting
+### Troubleshooting
 Ensure all session strings are valid and correspond to logged-in Telegram accounts.
 Verify that the userbots have access to the specified channels.
 Check logs for errors related to client connections or event handling.
 
-## Credits
+### Credits
 Built with Telethon
 Original project by @𝘅𝗔𝗮𝗬𝘂𝘅 and @𝗜𝗲𝗴𝗲𝗻𝗱𝘅𝗧𝗿𝗶𝗰𝗸𝘀
 
-#License
+###License
 This project is open source and free to use, modify, and distribute.
 
-## For support and updates, join the Telegram group: https://t.me/xaayux
+### For support and updates, join the Telegram group: https://t.me/xaayux
