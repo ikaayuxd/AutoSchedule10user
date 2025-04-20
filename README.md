@@ -54,8 +54,9 @@ Specify the channels to monitor for reactions in xaayux/plugins/reaction.py by u
 ```
 ## Usage
 Run the userbots with:
-
+bash```
 python3 -m xaayux
+```
 This will start all configured userbots concurrently. Each userbot will listen for new messages in the specified channels and react with a heart emoji ❤️ automatically.
 
 ## Project Structure
