@@ -82,4 +82,4 @@ Original project by @𝘅𝗔𝗮𝗬𝘂𝘅 and @𝗜𝗲𝗴𝗲𝗻𝗱𝘅�
 ## License
 This project is open source and free to use, modify, and distribute.
 
-## For support and updates, join the Telegram group: https://t.me/xaayux
+## For support and updates, join the Telegram Channel: https://t.me/LegendxTricks
