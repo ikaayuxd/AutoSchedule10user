@@ -51,13 +51,12 @@ SESSION3 = None
 ...
 SESSION10 = None
 Specify the channels to monitor for reactions in xaayux/plugins/reaction.py by updating the CHANNEL_IDS list with your target channel IDs.
-
+```
 ## Usage
 Run the userbots with:
 
 python3 -m xaayux
 This will start all configured userbots concurrently. Each userbot will listen for new messages in the specified channels and react with a heart emoji ❤️ automatically.
-```
 
 ## Project Structure
 xaayux/config.py: Configuration for API credentials, session strings, and other settings.
