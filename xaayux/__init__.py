@@ -38,7 +38,7 @@ async def register_plugins():
 
 async def run_clients():
     await register_plugins()
-    bot_task = asyncio.create_task(bot_control_plugins.start_bot(clients))
+    bot_task = asyncio.create_task(bot_controls_plugin.start_bot(clients))
     client_tasks = [asyncio.create_task(start_client(client, i+1)) for i, client in enumerate(clients)]
     await asyncio.gather(bot_task, *client_tasks)
 
