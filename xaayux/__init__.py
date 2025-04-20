@@ -5,11 +5,11 @@ from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from xaayux import config
 import xaayux.plugins.reaction as reaction_plugin
+import xaayux.plugins.bot_control as bot_control_plugin
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
 
-# Collect all session strings in a list dynamically
 sessions = []
 for i in range(1, 11):
     session_var = f'SESSION{i}'
@@ -18,7 +18,6 @@ for i in range(1, 11):
 
 clients = []
 
-# Create TelegramClient instances for each valid session string
 for i, session_str in enumerate(sessions):
     if session_str is not None:
         try:
@@ -34,17 +33,14 @@ for i, session_str in enumerate(sessions):
         except Exception as e:
             logging.error(f"Failed to create client {i+1}: {e}")
 
-# Register plugins for all clients BEFORE starting clients
 async def register_plugins():
     await reaction_plugin.setup(clients)
 
-# Define an asynchronous function to run all clients concurrently
 async def run_clients():
     await register_plugins()
-    tasks = []
-    for i, client in enumerate(clients):
-        tasks.append(asyncio.create_task(start_client(client, i+1)))
-    await asyncio.gather(*tasks)
+    bot_task = asyncio.create_task(bot_control_plugin.start_bot(clients))
+    client_tasks = [asyncio.create_task(start_client(client, i+1)) for i, client in enumerate(clients)]
+    await asyncio.gather(bot_task, *client_tasks)
 
 async def start_client(client, client_number):
     try:
@@ -54,7 +50,6 @@ async def start_client(client, client_number):
     except Exception as e:
         logging.error(f"Client {client_number} encountered an error: {e}")
 
-# Explicitly create an event loop and run the clients
 async def main():
     await run_clients()
 
