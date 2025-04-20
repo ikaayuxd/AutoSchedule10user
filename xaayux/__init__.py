@@ -34,7 +34,7 @@ for i, session_str in enumerate(sessions):
         except Exception as e:
             logging.error(f"Failed to create client {i+1}: {e}")
 
-# Register plugins for all clients
+# Register plugins for all clients BEFORE starting clients
 async def register_plugins():
     await reaction_plugin.setup(clients)
 
