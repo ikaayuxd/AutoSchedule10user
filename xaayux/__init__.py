@@ -5,7 +5,7 @@ from telethon.sessions import StringSession
 from telethon.network.connection.tcpabridged import ConnectionTcpAbridged
 from xaayux import config
 import xaayux.plugins.reaction as reaction_plugin
-import xaayux.plugins.bot_control as bot_control_plugin
+import xaayux.plugins.bot_controls as bot_controls_plugin
 
 logging.basicConfig(format='[%(levelname) 5s/%(asctime)s] %(name)s: %(message)s',
                     level=logging.INFO)
