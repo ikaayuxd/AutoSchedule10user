@@ -1,6 +1,7 @@
 import asyncio
 from telethon import events, functions, types
-from xaayux.config import CHANNEL_IDS
+
+CHANNEL_IDS = [-1001966404031, -1002652394848]  # Replace with your actual channel IDs
 
 async def react_to_message(event, client):
     if event.is_channel:
