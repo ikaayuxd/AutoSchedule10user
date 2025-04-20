@@ -11,8 +11,9 @@ SESSION8 = None
 SESSION9 = None
 SESSION10 = None
 DELAY = 1800  # in seconds
+CHANNEL_IDS = [-1001966404031, -1002652394848]  # Replace with your actual channel IDs
 
-CHANNEL_IDS = [-1001966404031, -1002652394848]
+EMOJIS = ['❤️', '👍', '😂', '🔥', '🎉', '😎', '🤖', '💯', '✨', '🙌']
 messages = [
     f"""😒 𝗟𝗶𝘀𝘁 𝗼𝗳 𝗦𝘁𝘂𝗳𝗳 𝗶𝗻 𝗼𝘂𝗿 𝗣𝗿𝗶𝘃𝗮𝘁𝗲 𝗖𝗵𝗮𝗻𝗻𝗲𝗹 😒
 
