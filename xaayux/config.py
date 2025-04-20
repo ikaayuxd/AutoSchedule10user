@@ -17,4 +17,4 @@ ADMIN_ID = 5488677608
 BOT_TOKEN = '7664258771:AAGgaxZ9KoHIjQxSMFJeYaU9h_kxBwrs890'
 
 EMOJIS = ['❤️', '👍', '😂', '🔥', '🎉', '😎', '🤖', '💯', '✨', '🙌']
-Note: Remove CHANNEL_IDS from config.py as reaction plugin now reacts in all joined channels.
+#Note: Removed CHANNEL_IDS from config.py as reaction plugin now reacts in all joined channels.
