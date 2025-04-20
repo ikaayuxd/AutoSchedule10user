@@ -1,7 +1,7 @@
 import asyncio
 import random
 from telethon import events, functions, types
-from config import CHANNEL_IDS, EMOJIS
+from xaayux.config import CHANNEL_IDS, EMOJIS
 
 async def react_to_message(event, client):
     if event.is_channel:
