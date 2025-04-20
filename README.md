@@ -51,7 +51,8 @@ SESSION3 = None
 ...
 SESSION10 = None
 Specify the channels to monitor for reactions in xaayux/plugins/reaction.py by updating the CHANNEL_IDS list with your target channel IDs.
-Usage
+
+## Usage
 Run the userbots with:
 
 python3 -m xaayux
